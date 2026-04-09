@@ -22,7 +22,9 @@ class HomesController < ApplicationController
 
   # POST /homes or /homes.json
   def create
+
     @home = Home.new(home_params)
+    @home.user_id = current_user.id
 
     respond_to do |format|
       if @home.save
@@ -66,6 +68,6 @@ class HomesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def home_params
-      params.require(:home).permit(:title, :content)
+      params.require(:home).permit(:title, :content, :user_id)
     end
 end
