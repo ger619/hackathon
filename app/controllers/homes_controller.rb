@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomesController < ApplicationController
   before_action :set_home, only: %i[show edit update destroy]
   before_action :authenticate_user!
@@ -63,7 +65,6 @@ class HomesController < ApplicationController
   def set_home
     @home = Home.find(params[:id])
   end
-
   # Only allow a list of trusted parameters through.
   def home_params
     params.require(:home).permit(:title, :content, :user_id)
