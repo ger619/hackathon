@@ -1,11 +1,9 @@
 class Home < ApplicationRecord
-
   belongs_to :user
 
   has_one_attached :qr_code
 
   include Rails.application.routes.url_helpers
-
 
   after_create :generate_qr
 

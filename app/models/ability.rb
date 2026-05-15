@@ -9,7 +9,7 @@ class Ability
       can :manage, Home, user_id: user.id
     else
       can :read, :all
-    end  #
+    end
     #   return unless user.present?
     #   can :read, :all
     #   return unless user.admin?

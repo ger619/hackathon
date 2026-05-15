@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  before_action :set_home, only: %i[ show edit update destroy ]
+  before_action :set_home, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /homes or /homes.json
@@ -8,8 +8,7 @@ class HomesController < ApplicationController
   end
 
   # GET /homes/1 or /homes/1.json
-  def show
-  end
+  def show; end
 
   # GET /homes/new
   def new
@@ -17,18 +16,16 @@ class HomesController < ApplicationController
   end
 
   # GET /homes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /homes or /homes.json
   def create
-
     @home = Home.new(home_params)
     @home.user_id = current_user.id
 
     respond_to do |format|
       if @home.save
-        format.html { redirect_to @home, notice: "Home was successfully created." }
+        format.html { redirect_to @home, notice: 'Home was successfully created.' }
         format.json { render :show, status: :created, location: @home }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +38,7 @@ class HomesController < ApplicationController
   def update
     respond_to do |format|
       if @home.update(home_params)
-        format.html { redirect_to @home, notice: "Home was successfully updated.", status: :see_other }
+        format.html { redirect_to @home, notice: 'Home was successfully updated.', status: :see_other }
         format.json { render :show, status: :ok, location: @home }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,19 +52,20 @@ class HomesController < ApplicationController
     @home.destroy
 
     respond_to do |format|
-      format.html { redirect_to homes_path, notice: "Home was successfully destroyed.", status: :see_other }
+      format.html { redirect_to homes_path, notice: 'Home was successfully destroyed.', status: :see_other }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_home
-      @home = Home.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def home_params
-      params.require(:home).permit(:title, :content, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_home
+    @home = Home.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def home_params
+    params.require(:home).permit(:title, :content, :user_id)
+  end
 end
